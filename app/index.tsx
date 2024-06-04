@@ -1,26 +1,41 @@
-import { Link, router } from 'expo-router';
+import { Link } from 'expo-router';
 import { Text, View, Button, TextInput } from 'react-native';
-import { NativeWindStyleSheet } from "nativewind";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+import { setUserFirstname } from '../store/userReducer';
 
-// Needed for NativeWind styles to take effect on web app.
-NativeWindStyleSheet.setOutput({
-  default: "native",
-});
 
 const AddFirstName = () => {
+  const user = useSelector((state: RootState) => state.user)
+  const dispatch = useDispatch()
+  let firstname = user.firstname
+
+  const handleTextInputChange = (text: string) => {
+    firstname = text
+  }
+
+  const handleNextClick = () => {
+    dispatch(setUserFirstname(firstname))
+  }
+
+  const handlePlaceholder = () => {
+    return firstname ? firstname : "Please enter your name"
+  }
+
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className='mb-8 text-lg'>What is your name?</Text>
-      <TextInput
-        className='mb-8 p-2 border'
-        placeholder="type name here..."
-        clearButtonMode='while-editing'
-        enterKeyHint='next'
-      />
-      <Link href={'/set_gender'} asChild>
-        <Button title='Next'/>
-      </Link>
-    </View>
+    <View className="flex-1 items-center bg-white pt-16">
+        <Text className='mb-8 text-lg'>What is your name?</Text>
+        <TextInput
+          className='mb-8 p-2 border'
+          placeholder={handlePlaceholder()}
+          clearButtonMode='while-editing'
+          enterKeyHint='next'
+          onChangeText={text => handleTextInputChange(text)}
+        />
+        <Link href={'/set_gender'} asChild>
+          <Button title='Next' onPress={() => handleNextClick()}/>
+        </Link>
+      </View>
   )
 }
 
