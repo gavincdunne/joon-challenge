@@ -7,7 +7,6 @@ import { setUserChildren } from '../store/userReducer';
 const AddChildren = () => {
   const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
-  let children: string[] = []
   let childName = ''
   
   const handleTextInputChange = (text: string) => {
@@ -15,8 +14,7 @@ const AddChildren = () => {
   }
 
   const handleAddChild = (childName: string) => {
-    children.push(childName)
-    dispatch(setUserChildren(children))
+    dispatch(setUserChildren(childName))
   }
 
   return (

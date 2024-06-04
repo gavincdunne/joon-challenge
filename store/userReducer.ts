@@ -26,14 +26,14 @@ export const userSlice = createSlice({
     setUserGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload
     },
-    setUserChildren: (state, action: PayloadAction<string[]>) => {
-      state.children = action.payload
+    setUserChildren: (state, action: PayloadAction<string>) => {
+      state.children.push(action.payload)
     },
     setUserEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload
     },
     setUserPassword: (state, action: PayloadAction<string>) => {
-      state.password = action.pa
+      state.password = action.payload
     }
   },
 })
