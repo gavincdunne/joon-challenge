@@ -12,7 +12,10 @@ NativeWindStyleSheet.setOutput({
 const Layout = () => {
   return (
     <Provider store={store}>
-      <Stack />
+      <Stack
+        screenOptions={{
+          headerTitle: ''
+        }} />
     </Provider>
   )
 }
