@@ -1,8 +1,9 @@
 import { Link } from 'expo-router';
-import { Text, View, Button, TextInput } from 'react-native';
+import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { setUserFirstname } from '../store/userReducer';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const AddFirstName = () => {
@@ -18,25 +19,28 @@ const AddFirstName = () => {
     dispatch(setUserFirstname(firstname))
   }
 
-  const handlePlaceholder = () => {
-    return firstname ? firstname : "Please enter your name"
-  }
-
   return (
-    <View className="flex-1 items-center bg-white pt-16">
-        <Text className='mb-8 text-lg'>What is your name?</Text>
+    <SafeAreaView className="flex-1 items-center bg-white pt-16">
+        <Text className='mb-4 text-lg'>What is your name?</Text>
         <TextInput
-          className='mb-8 p-2 border'
-          placeholder={handlePlaceholder()}
+          className='mb-16 p-4 border w-[275]'
+          placeholder='Enter your first name...'
+          placeholderTextColor="#d3d3d3" 
           accessibilityLabel="Enter your first name."
           clearButtonMode='while-editing'
           enterKeyHint='next'
           onChangeText={text => handleTextInputChange(text)}
         />
         <Link href={'/set_gender'} asChild>
-          <Button accessibilityLabel="Done with first name entry." title='Next' onPress={() => handleNextClick()}/>
+          <TouchableOpacity 
+            className='flex items-center p-4 border w-[225] bg-blue-500 border-gray-400 rounded'
+            accessibilityLabel="Done with first name entry." 
+            onPress={() => handleNextClick()}
+          >
+            <Text className='text-[#ffffff]'>Next</Text>
+          </TouchableOpacity>
         </Link>
-      </View>
+      </SafeAreaView>
   )
 }
 
