@@ -5,7 +5,7 @@ import { RootState } from '../store/store';
 import { setUserGender } from '../store/userReducer';
 
 
-const SetGender = () => {  
+const SetGender = () => {
   const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
   let gender = user.gender
@@ -20,24 +20,35 @@ const SetGender = () => {
   const handleNextClick = () => {
     dispatch(setUserGender(gender))
   }
-  
+
   return (
     <View className="flex-1 items-center bg-white pt-16">
       <Text className='mb-8 text-lg'>What is your gender?</Text>
       <View className='flex flex-row mb-8 space-x-10'>
-        <TouchableOpacity className={gender != 'Male' ? unselectedStyle : selectedStyle}  onPress={() => handleGenderSelect('Male')}>
+        <TouchableOpacity
+          className={gender != 'Male' ? unselectedStyle : selectedStyle}
+          accessibilityLabel="Select male gender."
+          onPress={() => handleGenderSelect('Male')}
+        >
           <Text className={gender != 'Male' ? 'text-[#000000]' : 'text-[#ffffff]'}>Male</Text>
         </TouchableOpacity>
-        <TouchableOpacity className={gender != 'Female' ? unselectedStyle : selectedStyle}  onPress={() => handleGenderSelect('Female')}>
-        <Text className={gender != 'Female' ? 'text-[#000000]' : 'text-[#ffffff]'}>Female</Text>
+        <TouchableOpacity 
+          className={gender != 'Female' ? unselectedStyle : selectedStyle} 
+          accessibilityLabel="Select female gender."
+          onPress={() => handleGenderSelect('Female')}
+        >
+          <Text className={gender != 'Female' ? 'text-[#000000]' : 'text-[#ffffff]'}>Female</Text>
         </TouchableOpacity>
-        <TouchableOpacity className={gender != 'Other' ? unselectedStyle : selectedStyle}  onPress={() => handleGenderSelect('Other')}>
+        <TouchableOpacity 
+          className={gender != 'Other' ? unselectedStyle : selectedStyle} 
+          accessibilityLabel="Select other gender."
+          onPress={() => handleGenderSelect('Other')}>
           <Text className={gender != 'Other' ? 'text-[#000000]' : 'text-[#ffffff]'}>Other</Text>
         </TouchableOpacity>
       </View>
 
       <Link href={'/add_children'} asChild>
-        <Button title='Next' onPress={() => handleNextClick()}/>
+        <Button accessibilityLabel="Done with select gender." title='Next' onPress={() => handleNextClick()} />
       </Link>
     </View>
   )

@@ -28,12 +28,13 @@ const AddFirstName = () => {
         <TextInput
           className='mb-8 p-2 border'
           placeholder={handlePlaceholder()}
+          accessibilityLabel="Enter your first name."
           clearButtonMode='while-editing'
           enterKeyHint='next'
           onChangeText={text => handleTextInputChange(text)}
         />
         <Link href={'/set_gender'} asChild>
-          <Button title='Next' onPress={() => handleNextClick()}/>
+          <Button accessibilityLabel="Done with first name entry." title='Next' onPress={() => handleNextClick()}/>
         </Link>
       </View>
   )

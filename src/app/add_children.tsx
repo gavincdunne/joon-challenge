@@ -25,15 +25,16 @@ const AddChildren = () => {
         placeholder="add child..."
         clearButtonMode='while-editing'
         enterKeyHint='next'
+        accessibilityLabel="Enter child's name"
         onChangeText={text => handleTextInputChange(text)}
       />
 
       <FlatList data={user.children} renderItem={({item}) => <Text>{item}</Text>}/>
 
-      <Button title='Add Child' onPress={() => handleAddChild(childName)}/>
+      <Button accessibilityLabel="Add child" title='Add Child' onPress={() => handleAddChild(childName)}/>
 
       <Link href={'/create_account'} asChild>
-        <Button title='Done' />
+        <Button accessibilityLabel="Done with add children" title='Next' />
       </Link>
     </View>
   )

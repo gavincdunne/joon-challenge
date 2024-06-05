@@ -1,4 +1,3 @@
-import { Link } from 'expo-router';
 import { Button, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -9,7 +8,6 @@ const CreateAccount = () => {
   const dispatch = useDispatch()
   let email = user.email
   let password = user.password
-  let userCreated = false
 
   const handleEmailInputChange = (text: string) => {
     email = text
@@ -22,7 +20,9 @@ const CreateAccount = () => {
   }
 
   const createAccount = (name: string, gender: string, childrenNames:
-    string[], email: string, password: string) => { }
+    string[], email: string, password: string) => { 
+      console.log(user)
+    }
 
   return (
     <View className="flex-1 items-center bg-white pt-16">
@@ -30,6 +30,7 @@ const CreateAccount = () => {
       <TextInput
         className='mb-8 p-2 border'
         placeholder="email"
+        accessibilityLabel="Enter email"
         clearButtonMode='while-editing'
         enterKeyHint='next'
         onChangeText={text => handleEmailInputChange(text)}
@@ -37,12 +38,14 @@ const CreateAccount = () => {
       <TextInput
         className='mb-8 p-2 border'
         placeholder="password"
+        accessibilityLabel="Create password"
         clearButtonMode='while-editing'
         enterKeyHint='next'
         onChangeText={text => handlePasswordInputChange(text)}
       />
       <Button
         title='Sign Up'
+        accessibilityLabel="Create Account"
         onPress={() => createAccount(user.email, user.gender, user.children, user.email, user.password)}
       />
 
