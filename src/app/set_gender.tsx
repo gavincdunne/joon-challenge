@@ -4,17 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { setUserGender } from '../store/userReducer';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import JoonButton from '../components/JoonButton';
+import { useState } from 'react';
 
 
 const SetGender = () => {
   const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
-  let gender = user.gender
+  const [gender, setGenderState] = useState(user.gender);
+
   const unselectedStyle = 'flex items-center max-w-100 bg-white py-4 px-6 border border-gray-400 rounded'
   const selectedStyle = 'flex items-center max-w-100 bg-blue-500 py-4 px-6 border border-gray-400 rounded'
 
-  const handleGenderSelect = (newgender: string) => {
-    gender = newgender
+  const handleGenderSelect = (g: string) => {
+    setGenderState(g)
     dispatch(setUserGender(gender))
   }
 
@@ -49,13 +52,10 @@ const SetGender = () => {
       </View>
 
       <Link href={'/add_children'} asChild>
-        <TouchableOpacity 
-          className='flex items-center p-4 border w-[225] bg-blue-500 border-gray-400 rounded' 
-          accessibilityLabel="Done with select gender."
-          onPress={() => handleNextClick()}
-        >
-          <Text className='text-[#ffffff]'>Next</Text>
-        </TouchableOpacity>
+      <JoonButton
+          onPress={handleNextClick}
+          label='Next'
+          accessibilityLabel='Done with select gender.' />
       </Link>
     </SafeAreaView>
   )
