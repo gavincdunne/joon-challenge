@@ -4,7 +4,7 @@ export interface JoonTextInputProps {
   onChangeText: (text: string) => any,
   placeholder: string,
   accessibilityLabel: string
-  value: string
+  value?: string
 }
 
 const JoonTextInput = (props: JoonTextInputProps) => {

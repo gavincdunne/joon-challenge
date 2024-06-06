@@ -29,6 +29,16 @@ export const userSlice = createSlice({
     setUserChildren: (state, action: PayloadAction<string>) => {
       state.children.push(action.payload)
     },
+    removeUserChild: (state, action: PayloadAction<number>) => {
+      if (action.payload !== -1) {
+        state.children.splice(action.payload, 1);
+      }
+    },
+    editUserChild: (state, action: PayloadAction<{index: number, update: string}>) => {
+      if (action.payload.index !== -1) {
+        state.children.splice(action.payload.index, 1, action.payload.update);
+      }
+    },
     setUserEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload
     },
@@ -38,6 +48,14 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setUserFirstname, setUserGender, setUserChildren, setUserEmail, setUserPassword } = userSlice.actions
+export const { 
+  setUserFirstname, 
+  setUserGender, 
+  setUserChildren,
+  removeUserChild ,
+  editUserChild, 
+  setUserEmail, 
+  setUserPassword
+} = userSlice.actions
 
 export default userSlice.reducer
