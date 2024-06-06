@@ -8,6 +8,8 @@ import JoonButton from '../components/JoonButton';
 import JoonTextInput from '../components/JoonTextInput';
 import { useState } from 'react';
 
+// Homescreen for expo-router (index)
+// Updates and persists user.firstname
 
 const AddFirstName = () => {
   const user = useSelector((state: RootState) => state.user)

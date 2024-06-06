@@ -7,6 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import JoonButton from '../components/JoonButton';
 import { useState } from 'react';
 
+// Updates and persists user.gender based on selection.
+// Updates UI based on user selection
 
 const SetGender = () => {
   const user = useSelector((state: RootState) => state.user)

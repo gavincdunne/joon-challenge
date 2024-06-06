@@ -10,8 +10,13 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import JoonButton from '../components/JoonButton';
 import JoonTextInput from '../components/JoonTextInput';
 
+// Handles adding, editing, and removing child names from list user.children.
+// Creates a FlatList for user.children array, nests FlatList in ScrollView for potentially extensive list.
+// Shows <Modal> when edit action is called, hides when edit is Saved/Discarded
+
 const AddChildren = () => {
   const user = useSelector((state: RootState) => state.user)
+  const children = user.children
   const dispatch = useDispatch()
   const [childName, setChildNameState] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
@@ -67,12 +72,12 @@ const AddChildren = () => {
               <View className='flex-row justify-between items-center mb-2'>
                 <TouchableOpacity
                   className='mx-4'
-                  onPress={() => handleRemoveChild(user.children.indexOf(item))}>
+                  onPress={() => handleRemoveChild(children.indexOf(item))}>
                   <FontAwesome name="close" size={24} color="black" />
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => toggleModal(user.children.indexOf(item), user.children[user.children.indexOf(item)])}>
+                  onPress={() => toggleModal(children.indexOf(item), children[children.indexOf(item)])}>
                   <FontAwesome5 name="edit" size={24} color="black" />
                 </TouchableOpacity>
               </View>

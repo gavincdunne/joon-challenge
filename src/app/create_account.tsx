@@ -7,6 +7,10 @@ import { useEffect, useState } from 'react';
 import JoonButton from '../components/JoonButton';
 import JoonTextInput from '../components/JoonTextInput';
 
+// Uses developed user object and calls createAccount() with user credentials.
+// Updates UI when account has been successfully created
+// Logs final user object to console.
+
 const CreateAccount = () => {
   const user = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()

@@ -1,5 +1,8 @@
 import { Text, View, TouchableOpacity } from 'react-native';
 
+// Global Button for modularity and consistency
+// Takes a callback function for onPress() behavior
+
 export interface JoonButtonProps {
   onPress: () => any,
   label: string,

@@ -1,5 +1,8 @@
 import { TextInput, View } from 'react-native';
 
+// Global TextInput for modularity and consistency
+// Takes an optional 'value' prop for persisting user entry on back stack navigation
+
 export interface JoonTextInputProps {
   onChangeText: (text: string) => any,
   placeholder: string,
